@@ -8,10 +8,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\TaskResource;
 
+/**
+* @group Task API
+*
+* APIs for front page
+*/
 class TaskController extends Controller
 {
     /**
-     * Display a listing of the tasks.
+     * Fetch Task
+     * 
+     * Display Task List
      * 
      * @authenticated
      * 
@@ -26,6 +33,8 @@ class TaskController extends Controller
     }
 
      /**
+     * Add Task
+     * 
      * Store a newly created resource in storage.
      * 
      * @authenticated
@@ -39,7 +48,7 @@ class TaskController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     */
+     */    
     public function store(Request $request)
     {
         $request->validate([
@@ -76,11 +85,29 @@ class TaskController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update Specific Task
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * To update the specific task.
+     * 
+     * @urlParam task required id of the task. Example: 1
+     * 
+     * @response {"data":[{
+     *   "id": 1,
+     *   "user_id": 1,
+     *   "title": "update title new",
+     *   "description": "updated desc new",
+     *   "due": null,
+     *   "created_at": "2020-10-31T06:33:06.000000Z",
+     *   "updated_at": "2020-11-02T07:23:11.000000Z",
+     *   "creator": {
+     *       "id": 1,
+     *       "name": "asriidev",
+     *       "email": "asriidev@gm.com",
+     *       "email_verified_at": null,
+     *       "created_at": "2020-10-31T06:31:44.000000Z",
+     *       "updated_at": "2020-10-31T06:31:44.000000Z"
+     *   }
+     *}]}     
      */
     public function update(Request $request, Task $task)
     {
